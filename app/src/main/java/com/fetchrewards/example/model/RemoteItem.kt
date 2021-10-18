@@ -1,6 +1,6 @@
 package com.fetchrewards.example.model
 
-data class ItemRemote(
+data class RemoteItem(
     val id: Int?,
     val listId: Int?,
     val name: String?
@@ -8,9 +8,9 @@ data class ItemRemote(
 
 // Separate the domain/database/network models
 
-fun List<ItemRemote>.asDatabaseModel(): List<ItemLocal> {
+fun List<RemoteItem>.asDatabaseModel(): List<LocalItem> {
     return map {
-        ItemLocal(
+        LocalItem(
             id = it.id,
             listId = it.listId,
             name = it.name

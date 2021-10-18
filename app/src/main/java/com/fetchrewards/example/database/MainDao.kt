@@ -5,17 +5,17 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.fetchrewards.example.model.ItemLocal
+import com.fetchrewards.example.model.LocalItem
 
 @Dao
 interface MainDao {
 
-    @Query("SELECT * FROM ItemLocal WHERE name <> '' ORDER BY listId asc ")
-    fun getItemsFromDB(): LiveData<List<ItemLocal>>
+    @Query("SELECT * FROM LocalItem WHERE name <> '' ORDER BY listId asc ")
+    fun getItemsFromDB(): LiveData<List<LocalItem>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertItemsToDB(vararg shops: ItemLocal)
+    suspend fun insertItemsToDB(vararg shops: LocalItem)
 
-    @Query("DELETE FROM ItemLocal")
+    @Query("DELETE FROM LocalItem")
     suspend fun deleteAllItemsFromDB()
 }
