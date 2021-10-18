@@ -1,9 +1,12 @@
 package com.fetchrewards.example.main
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
+import com.fetchrewards.example.model.Item
 import kotlinx.coroutines.launch
+import java.util.ArrayList
 
 class MainViewModel(private val repository: MainRepository): ViewModel() {
 
@@ -29,5 +32,13 @@ class MainViewModel(private val repository: MainRepository): ViewModel() {
             }
             throw IllegalArgumentException("Not able to create viewmodel")
         }
+    }
+
+    fun getByListId(id:String): LiveData<List<Item>> {
+        return repository.getItemsByIdFromDatabase(id)
+    }
+
+    fun getIds(): LiveData<List<Item>> {
+        return repository.getIdsFromDatabase()
     }
 }

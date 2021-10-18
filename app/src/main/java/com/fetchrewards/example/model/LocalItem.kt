@@ -20,3 +20,9 @@ fun List<LocalItem>.asDomainModel(): List<Item> {
         )
     }
 }
+
+fun List<String>.asDomainModel2(): List<String> {
+    return map {
+        it
+    }
+}

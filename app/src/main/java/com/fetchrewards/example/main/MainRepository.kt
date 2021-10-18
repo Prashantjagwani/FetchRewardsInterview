@@ -6,12 +6,17 @@ import com.fetchrewards.example.database.MainDao
 import com.fetchrewards.example.model.RemoteItem
 import com.fetchrewards.example.model.asDatabaseModel
 import com.fetchrewards.example.model.asDomainModel
+import com.fetchrewards.example.model.asDomainModel2
 import com.fetchrewards.example.network.ApiService
 import retrofit2.Response
 
 class MainRepository(private val service: ApiService, private val mainDao: MainDao) {
 
     fun getItemsFromDatabase() = Transformations.map(mainDao.getItemsFromDB()) {it.asDomainModel()}
+
+    fun getItemsByIdFromDatabase(id:String) = Transformations.map(mainDao.getItemsByIdFromDB(id)) {it.asDomainModel()}
+
+    fun getIdsFromDatabase() = Transformations.map(mainDao.getIdsFromDB()) {it.asDomainModel()}
 
     suspend fun getItemsFromNetwork() {
 
